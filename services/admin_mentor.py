@@ -93,8 +93,8 @@ class AdminMentor:
                
 
         demo.queue()
-        a,b,c = demo.launch(
-        # prevent_thread_lock = True,
+        _,b,c = demo.launch(
+        prevent_thread_lock = True,
         share = share
         
         )
