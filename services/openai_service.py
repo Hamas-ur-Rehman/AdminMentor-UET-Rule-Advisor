@@ -2,7 +2,7 @@ import os
 import time
 from openai import OpenAI
 from dotenv import load_dotenv
-from utils.custom_logger import *
+from utils.custom_logger import log
 load_dotenv()
 
 class OpenAIService:
