@@ -12,7 +12,7 @@ class OpenAIService:
             client = OpenAI()
             response = client.chat.completions.create(
             temperature=0,
-            model=os.getenv("MODEL", "gpt-4o-mini"),
+            model=os.getenv("MODEL", "gpt-4o"),
             messages=messages
             )
             log.warning(f"Time taken for AskAI: {round(time.time() - start_time,2)}")

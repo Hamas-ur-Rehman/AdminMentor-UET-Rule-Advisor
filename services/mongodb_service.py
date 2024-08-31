@@ -25,7 +25,7 @@ class MongoDBService:
             start_time = time.time()
             con=os.getenv("MONGODB")
             with MongoClient(con) as client:
-                cursor= client[self.db_name]["chats"].find({"userid":userid}).sort("created_at",DESCENDING).limit(6)
+                cursor= client[self.db_name]["chats"].find({"userid":userid}).sort("created_at",ASCENDING).limit(6)
                 chats= list(cursor)
                 log.warning(f"Time taken for fetch_chats: {round(time.time() - start_time,2)}")
                 return(chats)

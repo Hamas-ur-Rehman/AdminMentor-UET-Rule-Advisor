@@ -32,6 +32,7 @@ class AdminMentor:
             userid=self.userid,
             role="assistant",
             msg=response,
+            message=messages,
             created_at=datetime.datetime.now()
         )
         return response
