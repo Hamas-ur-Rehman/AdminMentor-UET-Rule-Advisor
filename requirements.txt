@@ -2,7 +2,6 @@ langchain
 langchain_openai
 langchain-community
 langchain-text-splitters
-chromadb
 openai
 python-dotenv 
 tiktoken
