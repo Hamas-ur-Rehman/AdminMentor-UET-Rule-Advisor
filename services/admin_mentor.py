@@ -60,7 +60,7 @@ class AdminMentor:
                     <li><strong>Murtaza</strong> 20PWBCS0823 </li>
                     <li><strong>Zakarya</strong> 20PWBCS0819 </li>
                     <li><strong>Abdur Rahman</strong> 20PWBCS0794 </li>
-                    <li><strong>Sahib Khan</strong> 20PWBCS0826 </li>
+                    <li><strong>Sahib Khan</strong> 20PWBCS0827 </li>
                 </ul>
                 """)
                     with gr.Column(scale=6):
