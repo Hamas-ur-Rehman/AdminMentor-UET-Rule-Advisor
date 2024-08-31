@@ -6,12 +6,22 @@ from dotenv import load_dotenv
 from utils.custom_logger import log
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain_community.document_loaders.csv_loader import CSVLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 import threading
 load_dotenv()
 
 
 class ChromaService:
+    def __init__(self):
+        self.db_name = "./chromadb"
+        self.text_splitter = RecursiveCharacterTextSplitter(
+                        # Set a really small chunk size, just to show.
+                        chunk_size=5000,
+                        chunk_overlap=1000,
+                        length_function=len,
+                        is_separator_regex=False,
+                    )
+
     def loader(self):
         try:
             start_time = time.time()
@@ -20,33 +30,24 @@ class ChromaService:
 
             # Initialize the Chroma vector store
             log.info("Initializing Chroma vector store")
-            if os.path.exists("./chromadb"):
+            if os.path.exists(self.db_name):
                 log.info("Removing existing Chroma vector store")
-                shutil.rmtree("./chromadb")
+                shutil.rmtree(self.db_name)
+
             vectorstore = Chroma(
-                persist_directory="./chromadb",
+                persist_directory=self.db_name,
                 embedding_function=embeddings,
-                collection_name="properties"
+                collection_name="uet"
             )
 
-            # Load the data from the CSV file
-            log.info("Loading data from CSV file")
-            loader = CSVLoader(file_path="./dataset/property.csv")
-            data = loader.load()
-
-            # Load the data into the Chroma vector store using multithreading
-            log.info(f"Loading data into Chroma vector store. Please be patient, this may take a while... Total records: {len(data)}")
-            threads = []
-            for i in tqdm(data):
-                thread = threading.Thread(target=Chroma.add_texts, args=(vectorstore, [i.page_content]))
-                thread.start()
-                threads.append(thread)
-            
-            # Wait for all threads to complete
-            for thread in threads:
-                thread.join()
-
-            log.info("Data loaded successfully")
+            root_path = './extracted'
+            items = os.listdir(root_path)
+            for i in tqdm(items):
+                with open(f"{root_path}/{i}",'r', encoding='utf-8') as f:
+                    texts = self.text_splitter.create_documents([f.read()])
+                    if isinstance(texts, str):
+                        texts = [texts]
+                    Chroma.add_documents(vectorstore, texts)
             log.warning(f"Time taken to load data: {round(time.time() - start_time, 2)} seconds")
         except Exception as e:
             log.error(f"Error in loader: {e}", exc_info=True)
@@ -58,9 +59,9 @@ class ChromaService:
             # Initialize the embeddings function from OpenAI
             embeddings = OpenAIEmbeddings()
             vectorstore = Chroma(
-                persist_directory="./chromadb",
+                persist_directory=self.db_name,
                 embedding_function=embeddings,
-                collection_name="properties"
+                collection_name="uet"
                 )
             log.info("Retrieving documents from Chroma vector store")
             DOCS = []
