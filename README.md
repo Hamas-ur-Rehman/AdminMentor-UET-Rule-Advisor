@@ -47,8 +47,27 @@ create a file named `.env` in the root directory of the project and add the foll
     ```bash
     http://127.0.0.1:8000/docs
     ```
+    ![image](https://github.com/user-attachments/assets/5b86fd6f-b653-4b49-8ba9-bcb1d19d1f24)
+
+
 5. You can now interact with the chatbot through the Swagger UI. This is you API endpoint. I have created a demo UI and an API if you want to make your own UI as well.
+     ![image](https://github.com/user-attachments/assets/91318b76-901c-425d-9ccd-a64c9a97d9b1)
 
-6. To run the API, run the following command: follow the image below
+6. To run the API, run the following command: follow the image below (This is needed if you want to make your own UI)
+   ![image](https://github.com/user-attachments/assets/3a201513-7659-4a7a-84e3-54b835394162)
+   ![image](https://github.com/user-attachments/assets/e46db2ad-50b7-4c02-9653-994b077e0389)
+   ![image](https://github.com/user-attachments/assets/7e93ac58-a6a1-4db6-86fc-0cdbdf7492f7)
+   ![image](https://github.com/user-attachments/assets/483ebebd-73e5-42c7-a798-0ba859af5b16)
 
-7. To run the UI, run the following command: follow the image below
+8. To run the UI, run the following command: follow the image below
+   ![image](https://github.com/user-attachments/assets/acde4055-79c3-4e31-bd9a-a0cc0c56c723)
+   ![image](https://github.com/user-attachments/assets/c9b0e582-2cbc-49aa-9f24-f96c214772d1)
+   ![image](https://github.com/user-attachments/assets/15ddc205-4825-45b7-b649-53569f3586f6)
+   ![image](https://github.com/user-attachments/assets/1e3680b5-70ae-4d96-8ae0-54e4692e2626)
+
+## Final UI
+![image](https://github.com/user-attachments/assets/3a7d4e96-64db-4d60-93bf-0ff5fa9aea85)
+
+
+
+
